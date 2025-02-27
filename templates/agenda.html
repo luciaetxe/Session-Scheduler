@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Session Scheduler</title>
+	<style>
+		body { font-family: font-style, normal; margin: 20px; background-color: #e5dfd2; }
+		h1 { color: #996e79; text-align: center; }
+		.error { color: red; text-align: center; fot-weight: bold; }
+		form { margin: 20px auto; max width: 400px; text-align: center; background-color: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0, 128, 128, 0.2); }
+		input, select { padding: 8px; margin: 5px; border: 1px solid #996e79; border-radius: 4px; width: 180px; }
+		input[type="submit"] { background-color: #996e79; color: white; padding: 8px 16px; border: none; border-radius: 4px; cursor: pointer; }
+		h2 { color: #7a7770; text-align: center; }
+		ul { list-style-type: none; padding: 0; margin: 20px auto; max-width: 400px; background-color: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0, 128, 128, 0.2); }
+		li { background-color: #eedbe8; color: #7a7770; padding: 10px; margin: 5px 0; border-radius: 4px; }
+	</style>
+</head>
+<body>
+	<h1>Session Scheduler</h1>
+	<form method="post">
+		<input type="text" name="name" placeholder="Your name">
+		<input type="date" name="date">
+		<input type="time" name="time">
+		<select name="service">
+			<option value="yoga">Yoga</option>
+			<option value="massage">Massage</option>
+		</select>
+		<input type="submit" value="Book Session">
+	</form>
+	{% if error %}
+		<p style="color: red;">{{ error }}</p>
+	{% endif %}
+	<h2>sessions</h2>
+	<ul>
+	{% for session in sessions %}
+		<li>{{ session.name }} - {{ session.date }}{% if session.time %} at 	{{ session.time }}{% endif %} ({{ session.service }})</li>
+	{% endfor %}
+	</ul>
+</body>
+</html>
